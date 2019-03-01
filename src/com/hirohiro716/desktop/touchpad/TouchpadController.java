@@ -43,6 +43,7 @@ public class TouchpadController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         if (Screen.getScreens().size() == 0 || this.getParameters().getRaw().size() != 1) {
+            System.out.println("Device is not specified.");
             Platform.exit();
             return;
         }
