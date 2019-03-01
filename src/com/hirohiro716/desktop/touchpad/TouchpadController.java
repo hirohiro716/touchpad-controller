@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -35,6 +36,9 @@ public class TouchpadController extends Application {
     private AnchorPane paneRoot;
     
     @FXML
+    private Label labelDeviceName;
+    
+    @FXML
     private Button buttonEnable;
     
     @FXML
@@ -52,8 +56,10 @@ public class TouchpadController extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setResizable(false);
         primaryStage.setTitle("Touchpad Controller");
-        primaryStage.setWidth(screen.getVisualBounds().getWidth());
-        primaryStage.setHeight(screen.getVisualBounds().getHeight());
+        primaryStage.setWidth(screen.getBounds().getWidth());
+        primaryStage.setHeight(screen.getBounds().getHeight());
+        primaryStage.setX(0);
+        primaryStage.setY(0);
         Scene scene = new Scene(this.paneRoot);
         scene.setFill(null);
         primaryStage.setScene(scene);
@@ -63,8 +69,10 @@ public class TouchpadController extends Application {
                 primaryStage.requestFocus();
             }
         });
-        // 有効ボタン
+        // デバイス名
         String device = this.getParameters().getRaw().get(0);
+        this.labelDeviceName.setText(device);
+        // 有効ボタン
         this.buttonEnable.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
